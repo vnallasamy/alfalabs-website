@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AlfaLabs | Empowering Data, AI & Digital Innovation</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="logo.png">
+  <style>
+    :root {
+      --primary: #222733;
+      --accent: #FF6F1C;
+      --text: #222733;
+      --card-bg: #fff;
+      --card-radius: 18px;
+      --card-shadow: 0 2px 12px rgba(34,39,51,0.11);
+      --footer-bg: #fff6f0;
+      --footer-text: #222733;
+      --hero-gradient: linear-gradient(135deg, #222733 65%, #FF6F1C 100%);
+      --input-bg: #f7fafd;
+    }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: #fff6f0;
+      min-height: 100vh;
+    }
+    
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      color: var(--primary);
+      z-index: 100;
+      height: 110px;
+      box-shadow: 0 2px 8px rgba(34,39,51,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: height 0.25s, box-shadow 0.18s;
+      min-width: 340px;
+    }
+    
+    .header-inner {
+      width: 100%;
+      max-width: 1320px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      height: 100%;
+      padding: 0 2rem;
+    }
+    
+    .header-logo {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex: 0 0 auto;
+      transition: transform 0.25s;
+    }
+    
+    .header-logo img {
+      height: 83px; /* Increased by 30% from 64px */
+      width: auto;
+      border-radius: 6px;
+    }
+    
+    .company-name-header {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 60px; /* Increased by 40% from 32px */
+      width: auto;
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    
+    .linkedin-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 0 0 auto;
+    }
+    
+    .linkedin-header a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid rgba(34,39,51,0.12);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background-color 0.18s, border-color 0.18s;
+    }
+    
+    .linkedin-header a:hover {
+      background: #f8f9fa;
+      border-color: rgba(34,39,51,0.18);
+    }
+    
+    .linkedin-header svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+    
+    header.compact {
+      height: 68px;
+      box-shadow: 0 1px 4px rgba(34,39,51,0.08);
+    }
+    
+    header.compact .company-name-header {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-8px);
+      pointer-events: none;
+    }
+    
+    header.compact .header-logo img {
+      height: 48px;
+    }
+    
+    main {
+      padding-top: 110px;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #fff9f3 60%, #fff2e8 100%);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1.5rem;
+      background: var(--hero-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin: 0 0 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      min-width: 140px;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    
+    .btn-primary:hover {
+      background: #e55a0c;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 111, 28, 0.3);
+    }
+    
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid rgba(34,39,51,0.15);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--footer-bg);
+      border-color: rgba(34,39,51,0.25);
+    }
+    
+    .section {
+      padding: 4rem 0; /* Reduced from 5rem */
+    }
+    
+    .section-alt {
+      background: linear-gradient(180deg, #fff 0%, #fff9f3 100%);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem; /* Reduced from 4rem */
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+      color: var(--primary);
+    }
+    
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .grid {
+      display: grid;
+      gap: 1.5rem; /* Reduced from 2rem */
+      grid-template-columns: repeat(4, 1fr); /* 4x1 grid for services */
+    }
+    
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr); /* Keep 2-column for about section */
+      gap: 1.5rem; /* Reduced spacing */
+    }
+    
+    .card {
+      background: var(--card-bg);
+      padding: 1.5rem; /* Reduced from 2rem */
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(34,39,51,0.15);
+    }
+    
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 0.8rem; /* Reduced from 1rem */
+      color: var(--primary);
+    }
+    
+    .card p {
+      color: #6b7280;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .contact-hero {
+      background: #fff;
+      padding: 3rem 0; /* Reduced from 5rem */
+      text-align: center;
+    }
+    
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.4rem; /* Reduced from 0.5rem */
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px; /* Reduced from 12px */
+      margin-bottom: 1.2rem; /* Reduced from 1.5rem */
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: var(--input-bg);
+      font-size: 16px;
+      font-family: inherit;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(255, 111, 28, 0.1);
+    }
+    
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 100px; /* Reduced from 120px */
+    }
+    
+    .contact-form button {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    
+    .contact-form button:hover {
+      background: #e55a0c;
+      transform: translateY(-1px);
+    }
+    
+    footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid #f0e6d6;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 on medium screens */
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-inner {
+        padding: 0 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+      }
+      
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .company-name-header {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-content {
+        padding: 0 1rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .contact-form {
+        padding: 0 1rem;
+      }
+    }
+    
+    /* Consistent font for all form elements */
+    body, input, textarea, button {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="logo.png" alt="AlfaLabs Logo">
+      </div>
+      
+      <img src="company-name.png" 
+           alt="AlfaLabs Company Name" 
+           class="company-name-header" 
+           id="companyNameHeader">
+      
+      <div class="linkedin-header">
+        <a href="https://www.linkedin.com/company/alfalabs-it-consulting/" 
+           target="_blank" 
+           rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.024-3.037-1.852-3.037-1.853 0-2.135 1.445-2.135 2.939v5.667H9.352V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.369-1.852 3.6 0 4.267 2.368 4.267 5.455v6.288zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.778 13.019H3.56V9h3.555v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.553C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.277V1.723C24 .771 23.2 0 22.225 0z"></path>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Empowering Data, AI & Digital Innovation</h1>
+        <p>Start-up company with data technology, AI/ML, Digital projects, Management consulting experience delivered variety of projects within banking and insurance clients globally.</p>
+        <div class="cta-buttons">
+          <a href="#services" class="btn btn-primary">View Our Services</a>
+          <a href="#contact" class="btn btn-secondary">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Services</h2>
+          <p class="section-subtitle">AlfaLabs is a global startup specializing in Data Technology, Artificial Intelligence, Digital Transformation, and Management Consulting. Our team has delivered a variety of innovative projects for leading banking and insurance clients worldwide.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Data Strategy & Engineering</h3>
+            <p>Unlock your data's true value with robust engineering, scalable architectures, and reliable governance. We help you build and manage data assets for growth and innovation.</p>
+          </div>
+          <div class="card">
+            <h3>AI & Machine Learning</h3>
+            <p>Transform with intelligent models for predictive analytics, automation, and smarter decisions. Accelerate performance and gain a competitive edge with advanced AI/ML.</p>
+          </div>
+          <div class="card">
+            <h3>Digital Transformation</h3>
+            <p>Modernize your business—adopt new technologies, optimize processes, and innovate faster. Our digital solutions help you thrive in a rapidly evolving marketplace.</p>
+          </div>
+          <div class="card">
+            <h3>Management Consulting</h3>
+            <p>Navigate change and unlock growth. Our experts deliver strategic planning, process improvement, and organizational transformation for lasting business impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="section section-alt" id="industries">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Industries</h2>
+          <p class="section-subtitle">We combine deep domain expertise with cutting-edge solutions to drive measurable results. Our collaborative, agile approach ensures every client's success in an ever-changing technological landscape.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Banking</h3>
+            <p>Deliver regulatory-compliant solutions, streamline operations, and enhance engagement for banks. We bring proven domain expertise for global banking clients.</p>
+          </div>
+          <div class="card">
+            <h3>Insurance</h3>
+            <p>Innovate claims, risk management, and policy services. Our tailored solutions help insurers exceed expectations and manage risk in a digital-first world.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">About AlfaLabs</h2>
+          <p class="section-subtitle">A startup partner delivering measurable results with domain expertise and modern technology.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Approach</h3>
+            <p>Collaborative and agile ways of working that align business goals, data foundations, and product delivery.</p>
+          </div>
+          <div class="card">
+            <h3>Outcomes</h3>
+            <p>Roadmaps, platforms, and models that are reliable, observable, and built for scale in production.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-hero" id="contact">
+      <h2>Contact Us</h2>
+      <p>Have questions or want to start a project? Reach out using the form below.</p>
+      <form class="contact-form" 
+            id="contactForm" 
+            method="POST" 
+            action="https://formsubmit.co/admin@alfalabs.ca" 
+            autocomplete="off" 
+            novalidate>
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required autocomplete="name">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+        <label for="phone">Phone Number (optional)</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="3" required></textarea>
+        
+        <!-- Honeypot spam prevention -->
+        <input type="text" name="_formsubmit_id" style="display:none" tabindex="-1" autocomplete="off">
+        
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_subject" value="New inquiry from AlfaLabs website">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" id="_next" name="_next" value="">
+        
+        <button type="submit">Send Message</button>
+        
+        <p id="formStatus" style="margin:0.6rem 0 0;color:#FF6F1C;font-weight:600;" aria-live="polite"></p>
+        <p id="thankYouMessage" style="display:none;margin:0.6rem 0 0;color:green;font-weight:600;">Thank you for your message! We'll get back to you soon.</p>
+      </form>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      © <span id="year"></span> AlfaLabs. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Header shrink effect
+    const header = document.getElementById('header');
+    const companyName = document.getElementById('companyNameHeader');
+    
+    function updateHeader() {
+      const scrollY = window.scrollY;
+      if (scrollY > 50) {
+        header.classList.add('compact');
+      } else {
+        header.classList.remove('compact');
+      }
+    }
+    
+    window.addEventListener('scroll', updateHeader);
+    updateHeader();
+    
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Form handling
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('formStatus');
+    const thankYouEl = document.getElementById('thankYouMessage');
+    const nextInput = document.getElementById('_next');
+    
+    // Set redirect URL for success message
+    const baseURL = window.location.origin + window.location.pathname;
+    nextInput.value = baseURL + '?sent=1#contact';
+    
+    // Check if redirected after successful submission
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('sent') === '1') {
+      thankYouEl.style.display = 'block';
+      statusEl.textContent = '';
+      // Clean URL without reloading
+      history.replaceState({}, document.title, baseURL + '#contact');
+    }
+    
+    // Form validation and submission
+    form.addEventListener('submit', function(e) {
+      statusEl.textContent = '';
+      thankYouEl.style.display = 'none';
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      let errors = [];
+      if (!name) errors.push('Name is required.');
+      if (!email) errors.push('Email is required.');
+      if (!message) errors.push('Message is required.');
+      
+      if (errors.length > 0) {
+        e.preventDefault();
+        statusEl.textContent = errors.join(' ');
+        return;
+      }
+      
+      statusEl.textContent = 'Sending...';
+    });
+  </script>
+</body>
+</html>
